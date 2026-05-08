@@ -1,3 +1,6 @@
+import { EmployeeGetAll } from "../../app/employee/application/employeeGetAll/employeeGetAll.js";
+import { Employee } from "../../app/employee/domain/employee.js";
+import { PgEmployeeRepository } from "../../app/employee/infraestructure/pgEmployeeRepository.js";
 import { RaceCreate } from "../../app/race/application/raceCreate/raceCreate.js";
 import { RaceDelete } from "../../app/race/application/raceDelete/raceDelete.js";
 import { RaceGetAll } from "../../app/race/application/raceGetAll/raceGetAll.js";
@@ -7,10 +10,11 @@ import { PgRaceRepository } from "../../app/race/infraestructure/pgRaceRepositor
 import { dbConfig } from "../../dataBase/pgConecction.js";
 
 const RaceRepository = new PgRaceRepository(dbConfig);
+const EmployeeRepository = new PgEmployeeRepository(dbConfig);
 
 export const ServiceContainer = {
     employee: {
-        
+        getAll: new EmployeeGetAll(EmployeeRepository),
     },
     dog: {
 
