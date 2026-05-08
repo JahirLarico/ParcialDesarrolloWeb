@@ -1,5 +1,5 @@
-import type { RaceId } from "./raceId.js";
-import type { RaceName } from "./raceName.js";
+import type { RaceId } from "./raceId.ts";
+import type { RaceName } from "./raceName.ts";
 
 type raceProps = {
     id?: RaceId,

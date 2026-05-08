@@ -1,10 +1,14 @@
 import { Router } from "express";
 import { RaceController } from "./race.controller.js";
 
-const raceController = Router();
-
 const controller = new RaceController();
 
-raceController.get("/getAll", controller.getAll);
+const raceRouter = Router();
 
-export {raceController} ;
+raceRouter.get("/getAll", controller.getAll);
+raceRouter.get("/getOneById/:raceId", controller.getOneById);
+raceRouter.post("/create", controller.create);
+raceRouter.delete("/delete/:raceId", controller.delete);
+raceRouter.post("/update", controller.update);
+
+export {raceRouter} ;

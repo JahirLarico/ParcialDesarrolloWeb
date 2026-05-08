@@ -1,11 +1,24 @@
 import "dotenv/config";
-import express, { type Request, type Response } from "express";
+import express, { type NextFunction, type Request, type Response } from "express";
+import { raceRouter } from "./app/race/infraestructure/race.router.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
 app.get("/", (req: Request, res: Response) => {
   res.send("hola");
 });
+
+
+app.use(express.json());
+app.use("/race", raceRouter);
+
+app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
+    res.status(500).send({
+        message: err.message
+    });
+});
+
+
 app.listen(port, () => {
     console.log('Server started on port: ' + port);
 });

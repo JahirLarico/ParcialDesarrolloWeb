@@ -1,5 +1,5 @@
-import type { Race } from "../../domain/race.js";
-import type { RaceRepository } from "../../domain/raceRepository.js";
+import type { Race } from "../../domain/race.ts";
+import type { RaceRepository } from "../../domain/raceRepository.ts";
 
 export class RaceGetAll {
     constructor(private _raceRepository: RaceRepository){}
