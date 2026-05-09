@@ -1,3 +1,9 @@
+import { DogCreate } from "../../app/dog/application/dogCreate/dogCreate.js";
+import { DogDelete } from "../../app/dog/application/dogDelete/dogDelete.js";
+import { DogGetAll } from "../../app/dog/application/dogGetAll/dogGetAll.js";
+import { DogGetOneById } from "../../app/dog/application/dogGetOneById/dogGetOneById.js";
+import { DogUpdate } from "../../app/dog/application/dogUpdate/dogUpdate.js";
+import { PgDogRepository } from "../../app/dog/infraestructure/dog.controller.js";
 import { EmployeeCreate } from "../../app/employee/application/employeeCreate/employeeCreate.js";
 import { EmployeeDelete } from "../../app/employee/application/employeeDelete/employeeDelete.js";
 import { EmployeeGetAll } from "../../app/employee/application/employeeGetAll/employeeGetAll.js";
@@ -15,7 +21,7 @@ import { dbConfig } from "../../dataBase/pgConecction.js";
 
 const RaceRepository = new PgRaceRepository(dbConfig);
 const EmployeeRepository = new PgEmployeeRepository(dbConfig);
-
+const DogRepository = new PgDogRepository(dbConfig);
 export const ServiceContainer = {
     employee: {
         create: new EmployeeCreate(EmployeeRepository),
@@ -25,7 +31,11 @@ export const ServiceContainer = {
         delete: new EmployeeDelete(EmployeeRepository)
     },
     dog: {
-
+        create: new DogCreate(DogRepository),
+        getAll: new DogGetAll(DogRepository),
+        getOneById: new DogGetOneById(DogRepository),
+        update: new DogUpdate(DogRepository),
+        delete: new DogDelete(DogRepository)
     },
     race: {
         create: new RaceCreate(RaceRepository),
