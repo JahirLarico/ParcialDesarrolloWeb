@@ -21,10 +21,9 @@ export class DogUpdate{
 
         const dog: Dog = new Dog(
             {
-                name, age, raceId
+                name, age, raceId, id
             }
         )
-
         const response = await this._dogRepository.update(dog);
     }
 }

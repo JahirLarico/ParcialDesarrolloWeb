@@ -41,6 +41,7 @@ export class PgDogRepository implements DogRepository{
     }
 
     async update(dog: Dog): Promise<void> {
+        console.log(dog)
         const query: QueryConfig = {
             text: "UPDATE dog SET name = $1, age = $2, raceId = $3 WHERE id = $4",
             values: [dog.name.dogName, dog.age.dogAge, dog.raceId.dogRaceId, dog.id?.dogId]

@@ -2,6 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import type { Dog } from "../domain/dog.js";
 import { ServiceContainer } from "../../../shared/infraestructure/serviceContainer.js";
 import type { DogId } from "../domain/dogId.js";
+import type { Race } from "../../race/domain/race.js";
 
 export class DogController {
     async create(req: Request, res: Response, next: NextFunction){
@@ -9,7 +10,7 @@ export class DogController {
             const {name, age, raceId} = req.body as {
                 name: string, age: string, raceId: string
             };
-    
+            const race: Race = await ServiceContainer.race.getOneById.run(raceId);
             const response = await ServiceContainer.dog.create.run(name, age, raceId);
         
             return res.status(201).json({
@@ -47,10 +48,10 @@ export class DogController {
 
     async update(req: Request, res: Response, next: NextFunction){
         try{
-            const {name, age, raceId, id} = req.body as {
-                name: string, age: string, raceId: string, id:string
+            const {id, name, age, raceId} = req.body as {
+                id:string, name: string, age: string, raceId: string
             };
-    
+            console.log(req.body)
             const response = await ServiceContainer.dog.update.run(id, name, age, raceId);
         
             return res.status(201).json({
