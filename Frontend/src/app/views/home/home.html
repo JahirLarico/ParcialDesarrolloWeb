@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <div class="logo">Dog App</div>
+  <div class="nav-links">
+    <a href="#">Inicio</a>
+    <a href="#">Perros</a>
+    <button class="login-btn" (click)="goToLogin()">
+      Login
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>
+    Lista de Perros
+  </h1>
+  <p>
+    Explora todos los perros registrados.
+  </p>
+</section>
+
+<section class="dogs-container">
+
+  @for (dog of dogsList; track dog) {
+
+  <div class="dog-card">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB6U38E_AnJ1-vP26V1zobaThA6HleTqywqICf1FqDDYwzqbQIwsFDRp9EvwHnXpoSiusolAxCv9etUDcuppxm77-xwOKaq3bc_iQZfA&s=10"
+    [alt]="dog.name" class="dog-image" />
+
+    <div class="dog-info">
+      <h2>{{ dog.name }}</h2>
+      <p>Edad: {{ dog.age }} años</p>
+    </div>
+  </div>
+  }
+</section>
+
+<app-footer />
