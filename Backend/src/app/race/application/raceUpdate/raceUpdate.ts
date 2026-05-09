@@ -10,11 +10,11 @@ export class RaceUpdate {
         raceId:string,
         raceName:string
     ):Promise<void>{
-        const id = new RaceId(raceId);
+        const id:RaceId = new RaceId(raceId);
 
-        const raceExist = await this._raceRepository.getOneById(id);
+        const raceExist:Race = await this._raceRepository.getOneById(id);
         const name = new RaceName(raceName);
-        if (!raceExist) throw new Error("Race id doesn't exists")
+        if (!raceExist) throw new Error("Race id doesn't exist")
         const race = new Race(
             {name, id}
         )

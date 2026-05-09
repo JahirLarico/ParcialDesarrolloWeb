@@ -1,4 +1,8 @@
+import { EmployeeCreate } from "../../app/employee/application/employeeCreate/employeeCreate.js";
+import { EmployeeDelete } from "../../app/employee/application/employeeDelete/employeeDelete.js";
 import { EmployeeGetAll } from "../../app/employee/application/employeeGetAll/employeeGetAll.js";
+import { EmployeeGetOneByDni } from "../../app/employee/application/employeeGetOneByDni/employeeGetOneByDni.js";
+import { EmployeeUpdate } from "../../app/employee/application/employeeUpdate/employeeUpdate.js";
 import { Employee } from "../../app/employee/domain/employee.js";
 import { PgEmployeeRepository } from "../../app/employee/infraestructure/pgEmployeeRepository.js";
 import { RaceCreate } from "../../app/race/application/raceCreate/raceCreate.js";
@@ -14,7 +18,11 @@ const EmployeeRepository = new PgEmployeeRepository(dbConfig);
 
 export const ServiceContainer = {
     employee: {
+        create: new EmployeeCreate(EmployeeRepository),
         getAll: new EmployeeGetAll(EmployeeRepository),
+        getOneByDni: new EmployeeGetOneByDni(EmployeeRepository),
+        update: new EmployeeUpdate(EmployeeRepository),
+        delete: new EmployeeDelete(EmployeeRepository)
     },
     dog: {
 
